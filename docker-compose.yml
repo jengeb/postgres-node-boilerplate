@@ -1,0 +1,15 @@
+version: '3'
+services:
+  node:
+    build: .
+    depends_on:
+      - postgres
+    links:
+      - postgres
+    ports:
+      - '9000:9000'
+    environment:
+      DATABASE_URL: postgresql://postgres:password@postgres:5432
+    restart: on-failure
+  postgres:
+    image: postgres
